@@ -1,0 +1,6 @@
+name: claude-code-agent
+runtime_name: claude-code-agent
+path: .
+description: Claude Code harness as a Pi recipe (pi-claude starter template)
+runtime:
+  llm_mode: managed

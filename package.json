@@ -1,0 +1,25 @@
+{
+  "name": "@introspection/pi-claude-recipe",
+  "version": "0.1.0",
+  "description": "Claude Code harness reproduced as an Introspection (Pi) recipe — a pi-claude starter template.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "peerDependencies": {
+    "@earendil-works/pi-agent-core": "*",
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "pi": {
+    "agents": [
+      "./agents/*.yaml"
+    ],
+    "skills": [
+      "./skills/*/SKILL.md"
+    ],
+    "extensions": [
+      "./extensions/*.ts",
+      "./extensions/*/index.ts"
+    ]
+  }
+}
