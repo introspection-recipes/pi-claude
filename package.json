@@ -1,5 +1,5 @@
 {
-  "name": "@introspection/pi-claude-recipe",
+  "name": "@introspection-recipes/pi-claude",
   "version": "0.1.0",
   "description": "Claude Code harness reproduced as an Introspection (Pi) recipe — a pi-claude starter template.",
   "type": "module",
