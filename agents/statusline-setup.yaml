@@ -2,10 +2,12 @@ name: statusline-setup
 description: Use this agent to configure the user's Claude Code status line setting.
 model:
   name: anthropic/claude-sonnet-4-6
-  reasoning_effort: low
+  thinking_level: low
 tools:
   - read
   - edit
+skills: []
+subagents: []
 system_instructions:
   mode: replace
   content: |

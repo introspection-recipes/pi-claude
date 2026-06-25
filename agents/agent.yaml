@@ -2,7 +2,7 @@ name: agent
 description: Main Claude Code agent — terminal-native software engineering assistant for editing files, running commands, git workflows, code review, and multi-agent coordination.
 model:
   name: anthropic/claude-opus-4-6
-  reasoning_effort: medium
+  thinking_level: medium
 tools:
   - read
   - edit
