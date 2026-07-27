@@ -1,58 +1,23 @@
-# pi-claude
+# Claude Template
 
-A starting point for a Pi coding agent inspired by the Claude Code harness.
+A starter template inspired by Claude Code.
 
-## Quickstart
+## Quick Start
 
-Install Pi and the Recipes extension once per machine:
+Click **Use this template** above to create your repository, then run:
 
 ```bash
 pi install npm:@introspection-ai/recipes
+cd your-repository
+pi --recipe .
 ```
 
-Then clone and run the recipe:
+Set `PARALLEL_API_KEY` to enable web search.
 
-```bash
-git clone https://github.com/introspection-recipes/pi-claude
-cd pi-claude
-pi --recipe . --agent agent
-```
+## What's Included
 
-`WebSearch` additionally requires `PARALLEL_API_KEY`.
+- A lead agent with specialized subagents
+- Claude-style planning, task, and interaction tools
+- Review, security, simplify, run, and verification skills
 
-## What's included
-
-| Path | Purpose |
-| --- | --- |
-| `SYSTEM.md` | Shared Claude-style coding behavior |
-| `agents/agent.yaml` | Lead coding agent and its tool surface |
-| `agents/*.yaml` | Explore, plan, general-purpose, verification, Claude guide, and status-line subagents |
-| `extensions/claude-tools.ts` | Structured user questions, plan approval, and task tools |
-| `extensions/web-tools.ts` | `WebFetch` and Parallel-backed `WebSearch` |
-| `skills/` | Simplify, code review, security review, run, and verify workflows |
-
-Current Claude Code uses `TaskCreate`, `TaskGet`, `TaskList`, and `TaskUpdate`
-instead of `TodoWrite` by default. User questions and approvals use the
-[portable Recipes interaction contract](https://pi.recipes/docs/interactions).
-
-Prompt and skill behavior is adapted from the
-[Piebald Claude Code system prompt snapshot](https://github.com/Piebald-AI/claude-code-system-prompts).
-
-## Make it yours
-
-Everything is ordinary source that can be edited directly. Start with:
-
-- `SYSTEM.md` for shared behavior.
-- `agents/agent.yaml` for models, tools, skills, and subagents.
-- `agents/*.yaml` for specialized agent behavior.
-- `skills/` for reusable workflows.
-- `extensions/` for tools and runtime hooks.
-
-Validate changes with:
-
-```bash
-npm run check
-```
-
-Recipe format, agent, MCP, interaction, and deployment documentation is at
-[pi.recipes/docs](https://pi.recipes/docs).
+[Read the Recipes documentation →](https://pi.recipes/docs)
