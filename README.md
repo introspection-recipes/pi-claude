@@ -2,12 +2,13 @@
 
 A starter template inspired by Claude Code.
 
-## Get started
+## Use this template
+
+Select **Use this template** on GitHub and create your repository. Then run:
 
 ```bash
 pi install npm:@introspection-ai/recipes
-git clone https://github.com/introspection-recipes/pi-claude
-cd pi-claude
+cd your-repository
 pi --recipe .
 ```
 
