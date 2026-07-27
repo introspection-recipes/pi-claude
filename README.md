@@ -1,6 +1,6 @@
-# pi-claude
+# Claude Template
 
-A starting point for a Pi coding agent inspired by the Claude Code harness.
+A starter template inspired by Claude Code.
 
 ## Quickstart
 
