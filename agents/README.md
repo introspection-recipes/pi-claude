@@ -5,8 +5,8 @@ Each `*.yaml` here is a Pi agent definition loaded via the `pi.agents` glob in `
 | Agent | Role | Model | Tools |
 |---|---|---|---|
 | `agent` | Default Claude Code main agent | opus | core coding tools, AskUserQuestion, plan approval, task tools, WebFetch, WebSearch |
-| `Explore` | Fast read-only codebase search | haiku | read, grep, find, bash |
-| `Plan` | Read-only architect / planning | inherit | read, grep, find, bash |
+| `explore` | Fast read-only codebase search | haiku | read, grep, find, bash |
+| `plan` | Read-only architect / planning | inherit | read, grep, find, bash |
 | `general-purpose` | Multi-step research and execution | inherit | full toolset |
 | `verification` | Adversarial PASS/FAIL/PARTIAL verifier | inherit | read, grep, find, bash |
 | `claude-code-guide` | Q&A on Claude Code / Agent SDK / Claude API | haiku | read, grep, find, WebFetch, WebSearch |
@@ -22,7 +22,7 @@ model:                        # optional; omit to inherit the session/default mo
   reasoning_effort: medium    # off | minimal | low | medium | high | xhigh
 tools: [read, edit, write, grep, find, bash, TaskCreate, TaskGet, TaskList, TaskUpdate]
 skills: [simplify]            # skill names the agent may load
-subagents: [Explore, Plan]    # subagents this agent may spawn (main agent only)
+subagents: [explore, plan]    # subagents this agent may spawn (main agent only)
 system_instructions:
   mode: replace | append      # replace = standalone prompt; append = add to SYSTEM.md
   content: |

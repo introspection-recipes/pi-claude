@@ -87,7 +87,7 @@ Edit these files first:
 
 ## Validating Locally
 
-CI validates every push with [`pi-recipes-action`](https://github.com/introspection-org/pi-recipes-action). To run the same check before each commit, enable the bundled pre-commit hook once after cloning:
+CI and the bundled pre-commit hook use the current Recipe Format validator from the Introspection CLI. Enable the hook once after cloning:
 
 ```bash
 git config core.hooksPath .githooks   # or: npm install
@@ -96,5 +96,5 @@ git config core.hooksPath .githooks   # or: npm install
 Or run the check directly at any time:
 
 ```bash
-npx -y -p @introspection-ai/pi-recipes@latest recipes check . --profile ci
+npm run check
 ```

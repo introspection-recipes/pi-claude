@@ -6,6 +6,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
+    "check": "npx -y -p @introspection-ai/cli@latest introspection check",
     "prepare": "git config core.hooksPath .githooks || true"
   },
   "peerDependencies": {
