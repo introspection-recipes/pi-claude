@@ -15,8 +15,8 @@ tools:
   - WebSearch
 
 subagents:
-  - Explore
-  - Plan
+  - explore
+  - plan
   - general-purpose
   - verification
   - claude-code-guide
