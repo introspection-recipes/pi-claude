@@ -1,6 +1,6 @@
 # pi-claude
 
-A starting point for your coding agent, inspired by the Claude Code harness.
+A starting point for a Pi coding agent inspired by the Claude Code harness.
 
 ## Quickstart
 
@@ -10,33 +10,49 @@ Install Pi and the Recipes extension once per machine:
 pi install npm:@introspection-ai/recipes
 ```
 
-Then clone this template and run it:
+Then clone and run the recipe:
 
 ```bash
 git clone https://github.com/introspection-recipes/pi-claude
-pi --recipe ./pi-claude
+cd pi-claude
+pi --recipe . --agent agent
 ```
+
+`WebSearch` additionally requires `PARALLEL_API_KEY`.
+
+## What's included
+
+| Path | Purpose |
+| --- | --- |
+| `SYSTEM.md` | Shared Claude-style coding behavior |
+| `agents/agent.yaml` | Lead coding agent and its tool surface |
+| `agents/*.yaml` | Explore, plan, general-purpose, verification, Claude guide, and status-line subagents |
+| `extensions/claude-tools.ts` | Structured user questions, plan approval, and task tools |
+| `extensions/web-tools.ts` | `WebFetch` and Parallel-backed `WebSearch` |
+| `skills/` | Simplify, code review, security review, run, and verify workflows |
+
+Current Claude Code uses `TaskCreate`, `TaskGet`, `TaskList`, and `TaskUpdate`
+instead of `TodoWrite` by default. User questions and approvals use the
+[portable Recipes interaction contract](https://pi.recipes/docs/interactions).
+
+Prompt and skill behavior is adapted from the
+[Piebald Claude Code system prompt snapshot](https://github.com/Piebald-AI/claude-code-system-prompts).
 
 ## Make it yours
 
-This is a directory, so change it like any other source. Nothing here is
-generated and nothing is hidden.
+Everything is ordinary source that can be edited directly. Start with:
 
-| Path | What it is |
-| --- | --- |
-| `SYSTEM.md` | instructions every agent in the package starts from |
-| `agents/agent.yaml` | the lead agent, and the agent you run |
-| `agents/*.yaml` | six subagents it can delegate to |
-| `skills/simplify/` | a skill the agent loads on demand |
-| `extensions/` | extra tools written in TypeScript |
+- `SYSTEM.md` for shared behavior.
+- `agents/agent.yaml` for models, tools, skills, and subagents.
+- `agents/*.yaml` for specialized agent behavior.
+- `skills/` for reusable workflows.
+- `extensions/` for tools and runtime hooks.
 
-Check your changes before you commit them:
+Validate changes with:
 
 ```bash
-introspection check
+npm run check
 ```
 
-## Docs
-
-The format, the agent file, MCP policy and judges are documented at
+Recipe format, agent, MCP, interaction, and deployment documentation is at
 [pi.recipes/docs](https://pi.recipes/docs).

@@ -3,6 +3,7 @@ auth.json
 **/.env
 **/.env.local
 **/.env.*.local
+.pi/mcporter.json
 
 # Dependencies and build artifacts
 node_modules
