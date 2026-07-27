@@ -10,7 +10,12 @@ tools:
   - grep
   - find
   - bash
-  - todo_write
+  - AskUserQuestion
+  - RequestPlanApproval
+  - TaskCreate
+  - TaskGet
+  - TaskList
+  - TaskUpdate
   - WebFetch
   - WebSearch
 
@@ -24,6 +29,10 @@ subagents:
 
 skills:
   - simplify
+  - code-review
+  - security-review
+  - run
+  - verify
 
 system_instructions:
   mode: append
@@ -35,6 +44,7 @@ system_instructions:
      - For simple, directed codebase searches (e.g. for a specific file/class/function) use the grep or find tools directly.
      - For broader codebase exploration and deep research, use the agent tool with subagent_type=Explore. This is slower than using grep or find directly, so use this only when a simple, directed search proves to be insufficient or when your task will clearly require more than 3 queries.
      - Skills relevant to a task are surfaced in the `<available_skills>` section of your context with a name, description, and location. When a task matches a skill, load it by reading its SKILL.md file with the read tool, then follow it. Do not reconstruct a skill's workflow from memory.
+     - Use AskUserQuestion only when blocked on a genuinely user-owned decision whose answer changes what you do next. Resolve discoverable facts and conventional defaults yourself. Use RequestPlanApproval, not AskUserQuestion, to present a completed plan for approval.
      - For up-to-date information beyond your training, use the WebSearch tool, and the WebFetch tool to retrieve specific URLs. Never guess URLs.
 
     # Delegation

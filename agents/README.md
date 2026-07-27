@@ -4,7 +4,7 @@ Each `*.yaml` here is a Pi agent definition loaded via the `pi.agents` glob in `
 
 | Agent | Role | Model | Tools |
 |---|---|---|---|
-| `agent` | Default Claude Code main agent | opus | read, edit, write, grep, find, bash, todo_write, WebFetch, WebSearch |
+| `agent` | Default Claude Code main agent | opus | core coding tools, AskUserQuestion, plan approval, task tools, WebFetch, WebSearch |
 | `Explore` | Fast read-only codebase search | haiku | read, grep, find, bash |
 | `Plan` | Read-only architect / planning | inherit | read, grep, find, bash |
 | `general-purpose` | Multi-step research and execution | inherit | full toolset |
@@ -20,7 +20,7 @@ description: <when to use>     # surfaced to the parent agent for delegation dec
 model:                        # optional; omit to inherit the session/default model
   name: anthropic/claude-opus-4-6
   reasoning_effort: medium    # off | minimal | low | medium | high | xhigh
-tools: [read, edit, write, grep, find, bash, todo_write]
+tools: [read, edit, write, grep, find, bash, TaskCreate, TaskGet, TaskList, TaskUpdate]
 skills: [simplify]            # skill names the agent may load
 subagents: [Explore, Plan]    # subagents this agent may spawn (main agent only)
 system_instructions:

@@ -4,7 +4,7 @@ Pi extensions loaded at runtime from this directory via the `pi.extensions` glob
 
 | Extension | Purpose |
 |-----------|---------|
-| `claude-tools.ts` | Registers the `todo_write` task-list tool. Pi ships the core file/search/shell tools (`read`, `edit`, `write`, `grep`, `find`, `bash`) built-in, so only the task-list tool needs to be added to match Claude Code's harness. |
+| `claude-tools.ts` | Registers `AskUserQuestion`, portable plan approval, and Claude Code's current structured task tools (`TaskCreate`, `TaskGet`, `TaskList`, `TaskUpdate`). |
 | `web-tools.ts` | Adds web access. Both are real client-side tools reusing Claude Code's own tool prompts. `WebFetch` uses the runtime's native `fetch()`. `WebSearch` is backed by the [Parallel AI Search API](https://docs.parallel.ai). |
 
 ## Web search
@@ -21,6 +21,10 @@ If `PARALLEL_API_KEY` is unset, `WebSearch` returns an actionable error instead 
 
 ## Hooks
 
-Claude Code's "hooks" are user-configured shell commands; on Pi the equivalent is event subscriptions via `pi.on(...)`. The available events include `session_start`, `before_agent_start`, `tool_call` (can block), `tool_result`, `turn_start`/`turn_end`, and more. `claude-tools.ts` uses `session_start` and `session_tree` to reconstruct the todo list when a session is resumed or navigated.
+Claude Code's "hooks" are user-configured shell commands; on Pi the equivalent is event subscriptions via `pi.on(...)`. The available events include `session_start`, `before_agent_start`, `tool_call` (can block), `tool_result`, `turn_start`/`turn_end`, and more. `claude-tools.ts` uses `session_start` and `session_tree` to reconstruct structured task state when a session is resumed or navigated.
+
+## User interaction
+
+The interaction tools call `askUserQuestion` and `askUserApproval` from `@introspection-ai/recipes/interactions`. They set `executionMode: "sequential"` as required by the interrupt/resume contract. Local TUI/RPC sessions show built-in dialogs; headless sessions resolve deterministically; durable hosts can set `PI_INTERRUPT_RESUME=1`, render `details.interrupt`, and resume later.
 
 To add a tool or hook, drop a new `*.ts` file (or `<name>/index.ts`) here and export an `ExtensionFactory`.
