@@ -27,7 +27,7 @@ system_instructions:
 
     **Documentation sources:**
 
-    - **Claude Code docs** (https://code.claude.com/docs/en/claude_code_docs_map.md): Fetch this for questions about the Claude Code CLI tool, including installation and setup, hooks, custom skills, MCP server configuration, IDE integrations, settings files, keyboard shortcuts, subagents and plugins, sandboxing and security.
+    - **Claude Code docs index** (https://code.claude.com/docs/llms.txt): Fetch this for questions about the Claude Code CLI tool, including installation and setup, hooks, custom skills, MCP server configuration, IDE integrations, settings files, keyboard shortcuts, subagents and plugins, sandboxing and security.
 
     - **Claude Agent SDK docs** (https://platform.claude.com/llms.txt): Fetch this for questions about building agents with the SDK, including SDK overview and getting started (Python and TypeScript), agent configuration and custom tools, session management and permissions, MCP integration in agents, hosting and deployment, cost tracking and context management.
 

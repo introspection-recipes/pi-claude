@@ -13,7 +13,7 @@ An Introspection recipe is a package of runtime behavior. This repository contai
 - `agents/agent.yaml`: the default runnable agent (the Claude Code main agent).
 - `agents/*.yaml`: the built-in subagents (Explore, Plan, general-purpose, verification, claude-code-guide, statusline-setup).
 - `skills/`: reusable instruction bundles (e.g. `simplify`).
-- `extensions/`: custom tools and runtime hooks (e.g. `todo_write`).
+- `extensions/`: custom tools and runtime hooks (questions, plan approval, structured tasks, and web access).
 
 When you create a runtime from this repo, Introspection reads the manifest, pins the selected git commit, and launches the default agent from this recipe package.
 
@@ -26,11 +26,19 @@ When you create a runtime from this repo, Introspection reads the manifest, pins
 | Built-in subagents (`src/tools/AgentTool/built-in/`) | `agents/explore.yaml`, `plan.yaml`, `general-purpose.yaml`, `verification.yaml`, `claude-code-guide.yaml`, `statusline-setup.yaml` |
 | Bundled skills (`src/skills/bundled/`) | `skills/simplify/SKILL.md` |
 | `Read`/`Write`/`Edit`/`Glob`/`Grep`/`Bash` tools | Pi built-ins: `read`, `write`, `edit`, `find`, `grep`, `bash` |
-| `TodoWrite` tool | `extensions/claude-tools.ts` |
+| `AskUserQuestion` tool | `extensions/claude-tools.ts` via Pi's portable interaction contract |
+| Plan approval interaction | `RequestPlanApproval` in `extensions/claude-tools.ts` |
+| `TaskCreate` / `TaskGet` / `TaskList` / `TaskUpdate` | `extensions/claude-tools.ts` |
 | `WebFetch` tool | `extensions/web-tools.ts` (native `fetch()`) |
 | `WebSearch` tool | `extensions/web-tools.ts` (Parallel AI Search API; needs `PARALLEL_API_KEY`) |
 
-Tool names in the prompts are mapped to Pi's tool names (`Read` → `read`, `Glob` → `find`, `Grep` → `grep`, `Bash` → `bash`, etc.). Ant-internal-only prompt sections, feature-flagged behavior, and internal skills (`verify`, `remember`, `stuck`) are intentionally omitted — they are gated off in external Claude Code builds.
+Tool names in the prompts are mapped to Pi's tool names (`Read` → `read`, `Glob` → `find`, `Grep` → `grep`, `Bash` → `bash`, etc.). `TodoWrite` is intentionally absent: current Claude Code uses the four structured task tools by default.
+
+Prompt and bundled-skill behavior is adapted from the [Piebald Claude Code system prompt snapshot](https://github.com/Piebald-AI/claude-code-system-prompts) for Claude Code **v2.1.220** (July 24, 2026). The recipe includes the portable coding-focused bundled skills: `simplify`, `code-review`, `security-review`, `run`, and `verify`. Claude-hosted or CLI-internal features are not represented by non-functional stubs.
+
+## Interactions
+
+`AskUserQuestion` and `RequestPlanApproval` use [`@introspection-ai/recipes/interactions`](https://pi.recipes/docs/interactions). The same recipe code works with Pi's terminal and RPC dialogs, deterministic headless behavior, and durable host pause/resume via `PI_INTERRUPT_RESUME`. Both tools are sequential because a host pause inside a parallel tool batch cannot be resumed safely.
 
 ## Repository Layout
 
@@ -51,7 +59,15 @@ agents/
   statusline-setup.yaml
 skills/
   README.md
+  code-review/
+    SKILL.md
+  run/
+    SKILL.md
+  security-review/
+    SKILL.md
   simplify/
+    SKILL.md
+  verify/
     SKILL.md
 extensions/
   README.md
@@ -71,7 +87,7 @@ Edit these files first:
 
 ## Validating Locally
 
-CI validates every push with [`pi-recipes-action`](https://github.com/introspection-org/pi-recipes-action). To run the same check before each commit, enable the bundled pre-commit hook once after cloning:
+CI and the bundled pre-commit hook use the current Recipe Format validator from the Introspection CLI. Enable the hook once after cloning:
 
 ```bash
 git config core.hooksPath .githooks   # or: npm install
@@ -80,5 +96,5 @@ git config core.hooksPath .githooks   # or: npm install
 Or run the check directly at any time:
 
 ```bash
-npx -y -p @introspection-ai/pi-recipes@latest recipes check . --profile ci
+npm run check
 ```
