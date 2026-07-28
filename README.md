@@ -21,7 +21,6 @@ export PARALLEL_API_KEY=your-key
 Validate the recipe and start a fresh local Pi session:
 
 ```bash
-introspection check
 introspection local --runtime claude-code-agent
 ```
 
@@ -41,7 +40,7 @@ Local Pi → Development → Staging → Production → Learn and repeat
 
 ### 1. Change and prove it locally
 
-Customize `SYSTEM.md`, the definitions under `agents/`, the tools under `extensions/`, or the reusable workflows under `skills/`. Repeat `introspection check` and the local prompt above in fresh sessions. Exercise any role or tool you changed, then run ordinary coding requests that should keep working.
+Customize `SYSTEM.md`, the definitions under `agents/`, the tools under `extensions/`, or the reusable workflows under `skills/`. Repeat the local prompt above in fresh sessions. Exercise any role or tool you changed, then run ordinary coding requests that should keep working.
 
 ### 2. Create the runtime and test development
 
